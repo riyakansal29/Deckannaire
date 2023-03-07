@@ -1,4 +1,4 @@
-//#include "stack.h"
+#include "stack.h"
 #include <string.h>
 #include <fstream>
 #include <iostream>
@@ -7,8 +7,8 @@ using namespace std;
 int const n = 100;
 int main() 
 {
- // stack_pile st_pile;
- // queue qu_deck;
+  stack_pile st_pile;
+  queue qu_deck;
 
  /*load questions and answers from questions.txt and save cards in queue*/
  
@@ -30,9 +30,9 @@ int main()
       strcpy(ques, tmp);
       ans = new char[strlen(tmp1) + 1];
       strcpy(ans, tmp1);
-     // card a_card;
-      //a_card.create_card(ques, ans);
-      //qu_deck.enqueue(a_card);
+      card a_card;
+      a_card.create_card(ques, ans);
+      qu_deck.enqueue(a_card);
       delete[] ques;
       delete[] ans;
       file_in.get(tmp, n, '?');
@@ -53,7 +53,7 @@ int main()
 
   // game starts
   int marks = 0;
- // card container;
+  card container;
   char user_response[n];
   char choice;
   int i=0;
@@ -62,7 +62,7 @@ int main()
 
     /* display the top card in the stack and ask the user whether to answer this question. if not, dissplay the question in pile*/
 
-    /*if (st_pile.peek() == 0) 
+    if (st_pile.peek() == 0) 
     {
       qu_deck.display_question();
       qu_deck.dequeue(container);
@@ -81,13 +81,13 @@ int main()
       } 
       else 
         st_pile.pop_top_question(container);
-    }*/
+    }
     
     cout << "Enter your answer : ";
     cin.get(user_response, n, '\n');
     cin.ignore(n, '\n');
     //score++,place card at bottom of deck if right answer,else move the card to the top of the pile.
-    /*if (container.check_answer(user_response) == 1) 
+    if (container.check_answer(user_response) == 1) 
     {
       ++marks;
       cout << "\n___________" << endl;
@@ -103,7 +103,7 @@ int main()
       st_pile.push_question(container);
     }
     i++;
-  }*/
+  }
   if (marks == 5)
     cout << "Congrats !! You win! Game over!" << endl;
   else
